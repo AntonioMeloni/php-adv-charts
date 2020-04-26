@@ -8,7 +8,7 @@
         <title>Adv Charts</title>
     </head>
     <body>
-
+        <?php $level = $_GET['level']; ?>
         <div class="chart-container">
             <canvas id="vendite-mensili"></canvas>
         </div>

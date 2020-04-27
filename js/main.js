@@ -87,7 +87,7 @@ $.ajax({
             vendite.push(fattTeam[team]);
         }
         var tipo = data[0].type;
-        createMultilineChart( teams, vendite)
+        createMultilineChart( mesi, vendite)
     },
     error: function (error) {
        alert('BOOM');
@@ -135,7 +135,7 @@ $.ajax({
 });
 
 
-function createMultilineChart(data, labels) {
+function createMultilineChart(labels, data) {
     var ctx = $('#vendite-mensili2');
             var chart = new Chart(ctx, {
                 type: 'line',
@@ -143,16 +143,18 @@ function createMultilineChart(data, labels) {
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: 'Grafico Vendite Mensili',
-                        borderColor: 'rgb(255, 99, 132)',
+                        label: 'Team 1',
+                        borderColor: 'lightgreen',
                         data: data[0]
-                    }],
-                    datasets: [{
-                        borderColor: 'rgb(0, 99, 132)',
+                    },
+                    {
+                        label: 'Team 2',
+                        borderColor: 'tomato',
                         data: data[1]
-                    }],
-                    datasets: [{
-                        borderColor: 'rgb(100, 99, 132)',
+                    },
+                    {
+                        label: 'Team 3',
+                        borderColor: 'lightblue',
                         data: data[2]
                     }]
                 },

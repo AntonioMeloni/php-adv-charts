@@ -36,18 +36,63 @@ $(document).ready(function () {
 
 
 //------------------STEP 3------------
+//------------GUEST------------
 
 $.ajax({
     url: 'guest_server.php',
     method: 'GET',
     success: function (data) {
-        console.log(data);
+        var fatt = data[0].data;
+        createLineChart(mesi,fatt);
     },
     error: function (error) {
        alert('BOOM');
     }
 });
 
+//---------------EMPLOYEE-------------
+
+$.ajax({
+    url: 'employee_server.php',
+    method: 'GET',
+    success: function (data) {
+        var fattAgente = data[0].data;
+        var nomi = [];
+        var vendite = [];
+
+        for (var nome in fattAgente) {
+            nomi.push(nome);
+            vendite.push(fattAgente[nome]);
+        }
+        var tipo = data[0].type;
+        createChart('#vendite-mensili2-pie',tipo, nomi, vendite)
+    },
+    error: function (error) {
+       alert('BOOM');
+    }
+});
+
+//-----------CLEVEL-----------
+
+$.ajax({
+    url: 'clevel_server.php',
+    method: 'GET',
+    success: function (data) {
+        var fattTeam = data[0].data;
+        var teams = [];
+        var vendite = [];
+
+        for (var team in fattTeam) {
+            teams.push(team);
+            vendite.push(fattTeam[team]);
+        }
+        var tipo = data[0].type;
+        createMultilineChart( teams, vendite)
+    },
+    error: function (error) {
+       alert('BOOM');
+    }
+});
 
     function createLineChart(labels, data) {
         var ctx = $('#vendite-mensili');
@@ -88,3 +133,30 @@ $.ajax({
     }
 
 });
+
+
+function createMultilineChart(data, labels) {
+    var ctx = $('#vendite-mensili2');
+            var chart = new Chart(ctx, {
+                type: 'line',
+
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Grafico Vendite Mensili',
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: data[0]
+                    }],
+                    datasets: [{
+                        borderColor: 'rgb(0, 99, 132)',
+                        data: data[1]
+                    }],
+                    datasets: [{
+                        borderColor: 'rgb(100, 99, 132)',
+                        data: data[2]
+                    }]
+                },
+
+
+            });
+}

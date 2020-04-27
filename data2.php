@@ -26,34 +26,36 @@
     ],
   ];
 
-  include 'index.php';
+  // include 'index.php';
 
-  $guest_access = [];
-  if ($level == 'guest') {
-      foreach ($graphs as $access) {
-          if($access['access'] == 'guest'){
-              $guest_access[] = $access;
-          }
-      }
-  }
 
-  $employee_access = [];
-  if ($level == 'employee') {
-      foreach ($graphs as $access) {
-          if($access['access'] == 'guest' || $access['access'] == 'employee' ){
-              $employee_access[] = $access;
-          }
-      }
+  
 
-  }
-
-  $clevel_access = [];
-  if ($level == 'clevel') {
-      foreach ($graphs as $access) {
-          if($access['access'] == 'guest' || $access['access'] == 'employee' || $access['access'] == 'clevel'){
-              $clevel_access[] = $access;
-          }
-      }
-
-  }
+  // if ($level == 'guest') {
+  //     foreach ($graphs as $access) {
+  //         if($access['access'] == 'guest'){
+  //             $guest_access[] = $access;
+  //         }
+  //     }
+  // }
+  //
+  // $employee_access = [];
+  // if ($level == 'employee') {
+  //     foreach ($graphs as $access) {
+  //         if($access['access'] == 'guest' || $access['access'] == 'employee' ){
+  //             $employee_access[] = $access;
+  //         }
+  //     }
+  //
+  // }
+  //
+  // $clevel_access = [];
+  // if ($level == 'clevel') {
+  //     foreach ($graphs as $access) {
+  //         if($access['access'] == 'guest' || $access['access'] == 'employee' || $access['access'] == 'clevel'){
+  //             $clevel_access[] = $access;
+  //         }
+  //     }
+  //
+  // }
 ?>
